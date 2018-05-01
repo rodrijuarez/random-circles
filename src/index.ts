@@ -65,6 +65,8 @@ const sketch = (p: p5) => {
   };
 
   const resetCircles = () => {
+    p.background(colors.black);
+
     coordinates = Array.from(new Array(numberOfCircles), () =>
       p.createVector(p.random(0, p.width), p.random(0, p.height)),
     );
@@ -92,10 +94,12 @@ const sketch = (p: p5) => {
       return p.createVector(firstDimension, firstDimension);
     });
   };
+
+  p.mouseClicked = () => {
+    //alert('here 2');
+    resetCircles();
+    return false;
+  };
 };
 
 const sketchP = new p5(sketch);
-
-const clicked = () => {
-  sketchP();
-};
