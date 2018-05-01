@@ -51,7 +51,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     // Provide an html template to customize the app.
     new HtmlWebpackPlugin({
-      title: 'Realistic Typescript Webpack',
+      title: 'Random circles',
       hash: true,
       filename: 'index.html',
       template: 'src/index.html',
