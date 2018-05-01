@@ -18,6 +18,7 @@ const sketch = (p: p5) => {
 
   var coordinates: p5.Vector[] = [];
   var dimensions: p5.Vector[] = [];
+  var speeds: p5.Vector[] = [];
 
   const numberOfCircles = 50;
 
@@ -37,6 +38,17 @@ const sketch = (p: p5) => {
     for (let index = 0; index < numberOfCircles; index++) {
       const coordinate = coordinates[index];
       const dimension = dimensions[index];
+      const speed = speeds[index];
+
+      coordinate.add(speed.x, speed.y);
+
+      if (coordinate.x >= p.width || coordinate.x <= 0) {
+        speed.set(speed.x * -1, speed.y);
+      }
+
+      if (coordinate.y >= p.height || coordinate.y <= 0) {
+        speed.set(speed.x, speed.y * -1);
+      }
 
       p.ellipse(coordinate.x, coordinate.y, dimension.x, dimension.y);
     }
@@ -45,6 +57,10 @@ const sketch = (p: p5) => {
   const resetCircles = () => {
     coordinates = Array.from(new Array(numberOfCircles), () =>
       p.createVector(p.random(0, p.width), p.random(0, p.height)),
+    );
+
+    speeds = Array.from(new Array(numberOfCircles), () =>
+      p.createVector(0.5, 0.5),
     );
 
     dimensions = Array.from(new Array(numberOfCircles), () => {
