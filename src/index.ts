@@ -9,10 +9,16 @@ const sketch = (p: p5) => {
     grey: p.color(150, 150, 150),
     black: p.color(51, 51, 51),
   };
+
+  const circleDimensions = {
+    min: 15,
+    max: 50,
+  };
+
   var coordinates: p5.Vector[] = [];
   var dimensions: p5.Vector[] = [];
 
-  const numberOfCircles = 10;
+  const numberOfCircles = 50;
 
   p.preload = () => {};
 
@@ -39,9 +45,18 @@ const sketch = (p: p5) => {
     coordinates = Array.from(new Array(numberOfCircles), () =>
       p.createVector(p.random(0, p.width), p.random(0, p.height)),
     );
-    dimensions = Array.from(new Array(numberOfCircles), () =>
-      p.createVector(15, 15),
-    );
+
+    dimensions = Array.from(new Array(numberOfCircles), () => {
+      const firstDimension = p.map(
+        p.random(0, 1),
+        0,
+        1,
+        circleDimensions.min,
+        circleDimensions.max,
+      );
+
+      return p.createVector(firstDimension, firstDimension);
+    });
   };
 
   const mouseClicked = () => {
