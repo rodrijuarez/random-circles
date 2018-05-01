@@ -96,7 +96,6 @@ const sketch = (p: p5) => {
   };
 
   p.mouseClicked = () => {
-    //alert('here 2');
     resetCircles();
     return false;
   };
