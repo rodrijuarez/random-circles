@@ -54,7 +54,7 @@ module.exports = {
       title: 'Realistic Typescript Webpack',
       hash: true,
       filename: 'index.html',
-      template: 'src/assets/index.html',
+      template: 'src/index.html',
     }),
     // Split the node_modules into their own JS so they don't have to be
     // recompiled with every change you make.
